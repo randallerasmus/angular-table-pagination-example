@@ -1,0 +1,48 @@
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <span class="paginator-wrapper mat-paginator-container">
+  <span class="page-index-selector mat-paginator-page-size">
+    <span class="page-index-text-wrapper mat-select-trigger mat-paginator-page-size-label">
+      Page index:
+    </span>
+
+    <mat-form-field class="mat-paginator-page-size-select mat-primary">
+       <input #pageSelect matInput type="number" [max]="pages"  [min]="1"  [ngModel]="getPage" (change)="pageToIndex($event.target.value)">
+    </mat-form-field>
+  </span>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+   </span>
+</div>
